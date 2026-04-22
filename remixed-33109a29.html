@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Workshop & Webinar — BAO Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange-1: #F28705;
+    --orange-2: #F27405;
+    --orange-3: #F25C05;
+    --orange-4: #D93F07;
+    --orange-5: #962A03;
+    --yellow-1: #FDFBEC;
+    --yellow-2: #F7E9A1;
+    --yellow-3: #F2DA63;
+    --yellow-4: #F2C84B;
+    --yellow-5: #FBB637;
+    --yellow-6: #F29F05;
+    --dark: #1A0A00;
+    --dark-2: #2D1200;
+    --dark-3: #3D1A00;
+    --mid: #5C2A00;
+    --text-on-dark: #FDFBEC;
+    --text-muted: rgba(253,251,236,0.65);
+    --ff-display: 'Comfortaa', cursive;
+    --ff-body: 'Roboto', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--ff-body);
+    background: var(--dark);
+    color: var(--text-on-dark);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 5vw;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(26,10,0,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(242,135,5,0.18);
+  }
+
+  .logo {
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--orange-1);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+  .logo span { color: var(--text-on-dark); }
+
+  nav { display: flex; align-items: center; gap: 2rem; }
+  nav a {
+    font-family: var(--ff-body);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--yellow-5); }
+
+  .btn-nav {
+    background: var(--orange-3);
+    color: #fff !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    font-weight: 700 !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.05em;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .btn-nav:hover { background: var(--orange-4) !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 5vw 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(242,135,5,0.22) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 40% at 15% 70%, rgba(217,63,7,0.18) 0%, transparent 60%),
+      linear-gradient(160deg, #1A0A00 0%, #2D1200 50%, #1A0A00 100%);
+    z-index: -1;
+  }
+
+  /* Decorative arc */
+  .hero-arc {
+    position: absolute;
+    right: -10vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55vw;
+    height: 55vw;
+    border-radius: 50%;
+    border: 1px solid rgba(242,135,5,0.12);
+    z-index: -1;
+  }
+  .hero-arc::before {
+    content: '';
+    position: absolute;
+    inset: 10%;
+    border-radius: 50%;
+    border: 1px solid rgba(242,135,5,0.09);
+  }
+  .hero-arc::after {
+    content: '';
+    position: absolute;
+    inset: 22%;
+    border-radius: 50%;
+    border: 1px solid rgba(242,135,5,0.07);
+  }
+
+  .hero-content { max-width: 680px; position: relative; z-index: 1; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(242,135,5,0.14);
+    border: 1px solid rgba(242,135,5,0.32);
+    color: var(--yellow-5);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--orange-1);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1 {
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.7s ease 0.1s both;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--orange-1), var(--yellow-4));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-desc {
+    font-size: 1.08rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin-bottom: 2.2rem;
+    animation: fadeUp 0.7s ease 0.2s both;
+    line-height: 1.75;
+  }
+
+  .hero-ctas {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3.5rem;
+    animation: fadeUp 0.7s ease 0.3s both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--orange-3);
+    color: #fff;
+    font-family: var(--ff-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(242,92,5,0.35);
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover {
+    background: var(--orange-4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(242,92,5,0.5);
+  }
+  .btn-primary svg { width: 16px; height: 16px; }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--ff-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1px solid rgba(253,251,236,0.18);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--orange-1); color: var(--yellow-5); }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s ease 0.4s both;
+  }
+
+  .stat-num {
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--orange-1);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: rgba(253,251,236,0.12);
+    align-self: stretch;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { position: relative; z-index: 1; }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange-1);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  /* ── EVENTS SECTION ── */
+  .events-section {
+    padding: 100px 5vw;
+    background: var(--dark-2);
+    border-top: 1px solid rgba(242,135,5,0.1);
+  }
+
+  .events-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── FILTER TABS ── */
+  .filter-tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .tab {
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid rgba(242,135,5,0.2);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--ff-body);
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .tab:hover { border-color: var(--orange-1); color: var(--yellow-5); }
+  .tab.active {
+    background: var(--orange-3);
+    border-color: var(--orange-3);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 2px 14px rgba(242,92,5,0.3);
+  }
+
+  /* ── EVENT GRID ── */
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* ── EVENT CARD ── */
+  .event-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(242,135,5,0.14);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .event-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(242,135,5,0.4);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.35), 0 0 0 1px rgba(242,135,5,0.18);
+  }
+
+  .event-card.past { opacity: 0.65; }
+  .event-card.past:hover { opacity: 0.85; }
+
+  .card-top {
+    padding: 1.5rem 1.5rem 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .card-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.7rem;
+    border-radius: 100px;
+    border: 1px solid;
+  }
+
+  .badge-webinar {
+    background: rgba(242,135,5,0.14);
+    border-color: rgba(242,135,5,0.35);
+    color: var(--yellow-5);
+  }
+  .badge-workshop {
+    background: rgba(217,63,7,0.14);
+    border-color: rgba(217,63,7,0.35);
+    color: #FF9070;
+  }
+  .badge-free {
+    background: rgba(34,197,94,0.1);
+    border-color: rgba(34,197,94,0.3);
+    color: #4ade80;
+  }
+  .badge-paid {
+    background: rgba(251,182,55,0.1);
+    border-color: rgba(251,182,55,0.3);
+    color: var(--yellow-5);
+  }
+  .badge-upcoming {
+    background: rgba(59,130,246,0.1);
+    border-color: rgba(59,130,246,0.3);
+    color: #60a5fa;
+  }
+  .badge-past {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.45);
+  }
+
+  .card-icon-wrap {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(242,135,5,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+  }
+
+  .card-body { padding: 1rem 1.5rem 1.25rem; flex: 1; }
+
+  .card-title {
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1.28;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.6rem;
+    color: var(--text-on-dark);
+  }
+
+  .card-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 1rem;
+  }
+
+  .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .meta-row svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+
+  .meta-row strong { color: var(--yellow-5); font-weight: 500; }
+
+  .card-topics {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+
+  .topic-tag {
+    font-size: 0.72rem;
+    background: rgba(242,135,5,0.08);
+    border: 1px solid rgba(242,135,5,0.15);
+    color: rgba(253,251,236,0.6);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .card-footer {
+    padding: 1rem 1.5rem 1.5rem;
+    border-top: 1px solid rgba(242,135,5,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .card-price {
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--orange-1);
+  }
+  .card-price small {
+    font-family: var(--ff-body);
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 1px;
+  }
+
+  .btn-card {
+    padding: 0.62rem 1.4rem;
+    border-radius: 100px;
+    font-family: var(--ff-body);
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+    border: none;
+    white-space: nowrap;
+  }
+
+  .btn-card-register {
+    background: var(--orange-3);
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(242,92,5,0.3);
+  }
+  .btn-card-register:hover {
+    background: var(--orange-4);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(242,92,5,0.45);
+  }
+
+  .btn-card-past {
+    background: rgba(255,255,255,0.07);
+    color: var(--text-muted);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .btn-card-past:hover {
+    background: rgba(255,255,255,0.12);
+    color: var(--text-on-dark);
+  }
+
+  /* seats bar */
+  .seats-bar-wrap { padding: 0 1.5rem 1rem; }
+  .seats-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+  .seats-label span:last-child { color: var(--orange-1); font-weight: 600; }
+  .seats-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .seats-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--orange-3), var(--yellow-5));
+    border-radius: 2px;
+  }
+
+  /* ── WHY JOIN ── */
+  .why-section {
+    padding: 100px 5vw;
+    background: var(--dark);
+    border-top: 1px solid rgba(242,135,5,0.08);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .why-benefits { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .benefit {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.25rem;
+    border-radius: 16px;
+    border: 1px solid rgba(242,135,5,0.1);
+    background: rgba(242,135,5,0.04);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .benefit:hover {
+    border-color: rgba(242,135,5,0.25);
+    background: rgba(242,135,5,0.08);
+  }
+
+  .benefit-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(242,135,5,0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .benefit-text h3 {
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    color: var(--text-on-dark);
+  }
+  .benefit-text p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .why-visual {
+    position: relative;
+  }
+
+  .why-card-stack {
+    position: relative;
+    height: 460px;
+  }
+
+  .stack-card {
+    position: absolute;
+    border-radius: 20px;
+    padding: 1.5rem;
+    border: 1px solid rgba(242,135,5,0.18);
+  }
+
+  .stack-card-1 {
+    background: var(--dark-3);
+    width: 80%;
+    right: 0;
+    top: 30px;
+    transform: rotate(3deg);
+  }
+  .stack-card-2 {
+    background: linear-gradient(135deg, rgba(242,135,5,0.15), rgba(217,63,7,0.1));
+    width: 85%;
+    left: 0;
+    top: 80px;
+    transform: rotate(-2deg);
+    border-color: rgba(242,135,5,0.25);
+  }
+  .stack-card-3 {
+    background: var(--dark-2);
+    width: 90%;
+    left: 5%;
+    top: 160px;
+    z-index: 3;
+    transform: rotate(0.5deg);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+  }
+
+  .stack-card-3 h3 {
+    font-family: var(--ff-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--orange-1);
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(242,135,5,0.08);
+  }
+  .check-item:last-child { border-bottom: none; }
+
+  .check-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(242,135,5,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    color: var(--orange-1);
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-section {
+    padding: 100px 5vw;
+    background: var(--dark-2);
+    border-top: 1px solid rgba(242,135,5,0.08);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .testimonial-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(242,135,5,0.12);
+    border-radius: 18px;
+    padding: 1.75rem;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .testimonial-card:hover { border-color: rgba(242,135,5,0.28); }
+
+  .quote-mark {
+    font-family: Georgia, serif;
+    font-size: 4rem;
+    color: rgba(242,135,5,0.2);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    display: block;
+    margin-top: -0.5rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.92rem;
+    color: rgba(253,251,236,0.78);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--orange-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text-on-dark);
+    margin-bottom: 2px;
+  }
+  .author-role {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .stars { color: var(--yellow-5); font-size: 0.75rem; margin-bottom: 0.75rem; letter-spacing: 2px; }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    padding: 100px 5vw;
+    background: var(--dark);
+    text-align: center;
+    border-top: 1px solid rgba(242,135,5,0.08);
+  }
+
+  .cta-box {
+    max-width: 680px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(242,135,5,0.12), rgba(217,63,7,0.08));
+    border: 1px solid rgba(242,135,5,0.25);
+    border-radius: 28px;
+    padding: 4rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 80%;
+    background: radial-gradient(ellipse, rgba(242,135,5,0.12), transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-box h2 {
+    font-family: var(--ff-display);
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .cta-box p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0F0500;
+    padding: 3rem 5vw;
+    border-top: 1px solid rgba(242,135,5,0.12);
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-brand .logo { font-size: 1.1rem; }
+  .footer-tagline {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    max-width: 280px;
+    line-height: 1.6;
+    margin-top: 0.75rem;
+  }
+
+  .footer-links h4 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange-1);
+    margin-bottom: 1rem;
+  }
+
+  .footer-links ul { list-style: none; }
+  .footer-links li { margin-bottom: 0.5rem; }
+  .footer-links a {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--yellow-5); }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: rgba(253,251,236,0.35);
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--dark-2);
+    border: 1px solid rgba(242,135,5,0.25);
+    border-radius: 24px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    animation: modalIn 0.3s ease;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.94) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.14); color: #fff; }
+
+  .modal-event-name {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange-1);
+    margin-bottom: 0.4rem;
+  }
+
+  .modal h2 {
+    font-family: var(--ff-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.75rem;
+  }
+
+  .form-group { margin-bottom: 1.1rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(242,135,5,0.2);
+    border-radius: 10px;
+    color: var(--text-on-dark);
+    font-family: var(--ff-body);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus {
+    border-color: var(--orange-1);
+    background: rgba(242,135,5,0.06);
+  }
+  .form-group input::placeholder { color: rgba(253,251,236,0.3); }
+  .form-group select option { background: var(--dark-2); }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .modal .btn-primary { width: 100%; justify-content: center; margin-top: 0.5rem; }
+
+  .modal-footer-note {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+  }
+
+  /* success state */
+  .modal-success {
+    display: none;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(34,197,94,0.15);
+    border: 2px solid rgba(34,197,94,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.6rem;
+  }
+
+  .modal-success h2 {
+    font-family: var(--ff-display);
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .modal-success p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* ── SCROLL ANIMATION ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: rgba(242,135,5,0.3); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--orange-1); }
+
+  /* ── HIDDEN when filtered ── */
+  .event-card.hidden { display: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .why-grid { grid-template-columns: 1fr; }
+    .why-visual { display: none; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .events-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+    .cta-box { padding: 2.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <a href="#" class="logo">BAO<span> Academy</span></a>
+  <nav>
+    <div class="nav-links" style="display:flex;gap:2rem;">
+      <a href="#events">Sự kiện</a>
+      <a href="#why">Tại sao tham gia</a>
+      <a href="#testimonials">Học viên nói gì</a>
+    </div>
+    <a href="#events" class="btn-nav">Đăng ký ngay</a>
+  </nav>
+</header>
+
+<!-- ── HERO ── -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-arc"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Workshop &amp; Webinar Hub
+    </div>
+
+    <h1>Tất cả sự kiện<br /><em>AI thực chiến</em><br />tại một nơi</h1>
+
+    <p class="hero-desc">
+      Khám phá toàn bộ workshop và webinar của BAO Academy — 
+      được cập nhật liên tục, dẫn dắt bởi chuyên gia thực tế, 
+      áp dụng ngay vào công việc từ ngày đầu tiên.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#events" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 6l4-4 4 4M12 2v13M3 18h18M3 18l3 3M21 18l-3 3"/></svg>
+        Xem tất cả sự kiện
+      </a>
+      <a href="#why" class="btn-ghost">Tìm hiểu thêm →</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Học viên tham gia</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num">96%</div>
+        <div class="stat-label">Hài lòng sau khóa học</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Chuyên gia &amp; cố vấn</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EVENTS ── -->
+<section class="events-section" id="events">
+  <div class="events-header reveal">
+    <div>
+      <div class="section-label">Lịch sự kiện</div>
+      <h2 class="section-title">Workshop &amp; Webinar</h2>
+      <p class="section-desc">Chọn chủ đề phù hợp với bạn — từ AI văn phòng đến phân tích dữ liệu, tất cả đều có thực hành ngay.</p>
+    </div>
+  </div>
+
+  <!-- Filter Tabs -->
+  <div class="filter-tabs reveal">
+    <button class="tab active" data-filter="all">Tất cả</button>
+    <button class="tab" data-filter="webinar">Webinar</button>
+    <button class="tab" data-filter="workshop">Workshop</button>
+    <button class="tab" data-filter="upcoming">Sắp diễn ra</button>
+    <button class="tab" data-filter="free">Miễn phí</button>
+    <button class="tab" data-filter="past">Đã kết thúc</button>
+  </div>
+
+  <!-- Events Grid -->
+  <div class="events-grid" id="eventsGrid">
+
+    <!-- Card 1: Upcoming Webinar - Free -->
+    <div class="event-card reveal" data-type="webinar" data-status="upcoming" data-price="free">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-webinar">Webinar</span>
+          <span class="badge badge-free">Miễn phí</span>
+          <span class="badge badge-upcoming">Sắp diễn ra</span>
+        </div>
+        <div class="card-icon-wrap">🤖</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">AI trong Văn Phòng — Biến AI thành Trợ lý Đắc lực</div>
+        <div class="card-desc">
+          Hiểu đúng bản chất AI và ứng dụng tối ưu trong các tác vụ văn phòng hàng ngày — từ ghi chép cuộc họp, soạn tài liệu đến tự động hóa email không cần lập trình.
+        </div>
+        <div class="card-meta">
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <strong>Thứ Sáu, 06/06/2025 · 19:00 – 21:00</strong>
+          </div>
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M3 8h12v8H3z"/></svg>
+            Online · Zoom
+          </div>
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            Dẫn dắt bởi chuyên gia BAO Academy
+          </div>
+        </div>
+        <div class="card-topics">
+          <span class="topic-tag">Tư duy AI</span>
+          <span class="topic-tag">Họp & ghi chép</span>
+          <span class="topic-tag">Notebook LM</span>
+          <span class="topic-tag">Automation</span>
+        </div>
+      </div>
+      <div class="seats-bar-wrap">
+        <div class="seats-label">
+          <span>Chỗ đã đăng ký</span>
+          <span>78/100 chỗ</span>
+        </div>
+        <div class="seats-bar">
+          <div class="seats-fill" style="width:78%"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">
+          MIỄN PHÍ
+          <small>Giới hạn 100 người</small>
+        </div>
+        <button class="btn-card btn-card-register" onclick="openModal('AI trong Văn Phòng')">Đăng ký ngay</button>
+      </div>
+    </div>
+
+    <!-- Card 2: Upcoming Workshop - Paid -->
+    <div class="event-card reveal" data-type="workshop" data-status="upcoming" data-price="paid">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-workshop">Workshop</span>
+          <span class="badge badge-paid">Có phí</span>
+          <span class="badge badge-upcoming">Sắp diễn ra</span>
+        </div>
+        <div class="card-icon-wrap">📊</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">AI-Driven Data Analytics cho Marketer hiện đại</div>
+        <div class="card-desc">
+          Workshop thực hành chuyên sâu dành cho marketing & business analyst muốn khai thác dữ liệu với AI — từ phân tích xu hướng đến xây dựng dashboard tự động.
+        </div>
+        <div class="card-meta">
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <strong>Thứ Bảy, 14/06/2025 · 09:00 – 17:00</strong>
+          </div>
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Offline · TP.HCM (địa điểm cụ thể sau)
+          </div>
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            Tối đa 30 học viên · Thực hành 100%
+          </div>
+        </div>
+        <div class="card-topics">
+          <span class="topic-tag">Python + AI</span>
+          <span class="topic-tag">Dashboard</span>
+          <span class="topic-tag">Market Research</span>
+          <span class="topic-tag">Looker Studio</span>
+        </div>
+      </div>
+      <div class="seats-bar-wrap">
+        <div class="seats-label">
+          <span>Chỗ đã đăng ký</span>
+          <span>22/30 chỗ</span>
+        </div>
+        <div class="seats-bar">
+          <div class="seats-fill" style="width:73%"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">
+          1.500.000 ₫
+          <small>Early Bird: 1.200.000 ₫</small>
+        </div>
+        <button class="btn-card btn-card-register" onclick="openModal('AI-Driven Data Analytics')">Đăng ký ngay</button>
+      </div>
+    </div>
+
+    <!-- Card 3: Upcoming Webinar - Free -->
+    <div class="event-card reveal" data-type="webinar" data-status="upcoming" data-price="free">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-webinar">Webinar</span>
+          <span class="badge badge-free">Miễn phí</span>
+          <span class="badge badge-upcoming">Sắp diễn ra</span>
+        </div>
+        <div class="card-icon-wrap">🔬</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">AI trong Research — Tăng tốc nghiên cứu với AI</div>
+        <div class="card-desc">
+          Khám phá cách dùng AI để thu thập, phân tích và tổng hợp dữ liệu nghiên cứu — từ literature review đến phân tích định tính với tốc độ gấp 10 lần.
+        </div>
+        <div class="card-meta">
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <strong>Thứ Tư, 18/06/2025 · 19:30 – 21:00</strong>
+          </div>
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M3 8h12v8H3z"/></svg>
+            Online · Zoom
+          </div>
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            Dành cho researcher, sinh viên, học viên cao học
+          </div>
+        </div>
+        <div class="card-topics">
+          <span class="topic-tag">Literature Review</span>
+          <span class="topic-tag">Perplexity AI</span>
+          <span class="topic-tag">Phân tích định tính</span>
+        </div>
+      </div>
+      <div class="seats-bar-wrap">
+        <div class="seats-label">
+          <span>Chỗ đã đăng ký</span>
+          <span>45/80 chỗ</span>
+        </div>
+        <div class="seats-bar">
+          <div class="seats-fill" style="width:56%"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">
+          MIỄN PHÍ
+          <small>Giới hạn 80 người</small>
+        </div>
+        <button class="btn-card btn-card-register" onclick="openModal('AI trong Research')">Đăng ký ngay</button>
+      </div>
+    </div>
+
+    <!-- Card 4: Past Webinar -->
+    <div class="event-card past reveal" data-type="webinar" data-status="past" data-price="free">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-webinar">Webinar</span>
+          <span class="badge badge-free">Miễn phí</span>
+          <span class="badge badge-past">Đã kết thúc</span>
+        </div>
+        <div class="card-icon-wrap" style="opacity:0.6">💼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">AI Foundation for Now — Nền tảng AI cho người không lập trình</div>
+        <div class="card-desc">
+          Buổi webinar giới thiệu tổng quan về AI generative — prompt engineering, công cụ thiết yếu, và lộ trình học AI từ đầu dành cho người không có nền tảng kỹ thuật.
+        </div>
+        <div class="card-meta">
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <strong>Thứ Sáu, 06/02/2025 · 19:00 – 21:00</strong>
+          </div>
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M3 8h12v8H3z"/></svg>
+            Online · Zoom · <span style="color:#4ade80">247 người tham dự</span>
+          </div>
+        </div>
+        <div class="card-topics">
+          <span class="topic-tag">Prompt Engineering</span>
+          <span class="topic-tag">ChatGPT</span>
+          <span class="topic-tag">Claude AI</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-price" style="color:var(--text-muted)">
+          Đã kết thúc
+          <small>247 người đã tham gia</small>
+        </div>
+        <button class="btn-card btn-card-past" onclick="openModal('AI Foundation for Now')">Nhận tài liệu</button>
+      </div>
+    </div>
+
+    <!-- Card 5: Upcoming Workshop - Paid -->
+    <div class="event-card reveal" data-type="workshop" data-status="upcoming" data-price="paid">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-workshop">Workshop</span>
+          <span class="badge badge-paid">Có phí</span>
+          <span class="badge badge-upcoming">Sắp diễn ra</span>
+        </div>
+        <div class="card-icon-wrap">🛡️</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">AI trong Quản Trị Báo Cáo — Tự động hóa báo cáo doanh nghiệp</div>
+        <div class="card-desc">
+          Dành cho quản lý và trưởng phòng muốn xây dựng hệ thống báo cáo thông minh — tự động thu thập dữ liệu, tạo insight và phân phối báo cáo định kỳ không cần nhân lực.
+        </div>
+        <div class="card-meta">
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <strong>Chủ Nhật, 22/06/2025 · 09:00 – 17:00</strong>
+          </div>
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Offline · TP.HCM · Tối đa 25 học viên
+          </div>
+        </div>
+        <div class="card-topics">
+          <span class="topic-tag">Power BI + AI</span>
+          <span class="topic-tag">Google Apps Script</span>
+          <span class="topic-tag">Auto-report</span>
+        </div>
+      </div>
+      <div class="seats-bar-wrap">
+        <div class="seats-label">
+          <span>Chỗ đã đăng ký</span>
+          <span>10/25 chỗ</span>
+        </div>
+        <div class="seats-bar">
+          <div class="seats-fill" style="width:40%"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">
+          2.000.000 ₫
+          <small>Bao gồm tài liệu & template</small>
+        </div>
+        <button class="btn-card btn-card-register" onclick="openModal('AI trong Quản Trị Báo Cáo')">Đăng ký ngay</button>
+      </div>
+    </div>
+
+    <!-- Card 6: Past Workshop -->
+    <div class="event-card past reveal" data-type="workshop" data-status="past" data-price="paid">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-workshop">Workshop</span>
+          <span class="badge badge-paid">Có phí</span>
+          <span class="badge badge-past">Đã kết thúc</span>
+        </div>
+        <div class="card-icon-wrap" style="opacity:0.6">📈</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">AI trong Market Research — Nghiên cứu thị trường thông minh</div>
+        <div class="card-desc">
+          Workshop thực hành phân tích xu hướng thị trường, hành vi người dùng và đối thủ cạnh tranh bằng AI — nhanh hơn, sâu hơn và chi phí thấp hơn so với phương pháp truyền thống.
+        </div>
+        <div class="card-meta">
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <strong>Thứ Bảy, 15/03/2025 · 09:00 – 17:00</strong>
+          </div>
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            28 học viên · <span style="color:#4ade80">100% hoàn thành</span>
+          </div>
+        </div>
+        <div class="card-topics">
+          <span class="topic-tag">Competitive Intel</span>
+          <span class="topic-tag">Survey AI</span>
+          <span class="topic-tag">Trend Analysis</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-price" style="color:var(--text-muted)">
+          Đã kết thúc
+          <small>28 học viên đã tham gia</small>
+        </div>
+        <button class="btn-card btn-card-past">Xem lại nội dung</button>
+      </div>
+    </div>
+
+  </div><!-- end grid -->
+</section>
+
+<!-- ── WHY JOIN ── -->
+<section class="why-section" id="why">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal">
+      <div class="section-label">Tại sao tham gia</div>
+      <h2 class="section-title">Học AI mà không chỉ<br />nghe lý thuyết</h2>
+      <p class="section-desc">Mỗi buổi được thiết kế để bạn rời đi với ít nhất một kỹ năng áp dụng được ngay ngày hôm sau.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-benefits">
+
+        <div class="benefit reveal">
+          <div class="benefit-icon">🎯</div>
+          <div class="benefit-text">
+            <h3>100% thực hành thực chiến</h3>
+            <p>Không PowerPoint lý thuyết. Mỗi buổi có hands-on demo, bài tập thực tế và template bạn mang về dùng ngay.</p>
+          </div>
+        </div>
+
+        <div class="benefit reveal">
+          <div class="benefit-icon">👨‍💼</div>
+          <div class="benefit-text">
+            <h3>Chuyên gia có kinh nghiệm thực tế</h3>
+            <p>Giảng viên là người đang ứng dụng AI trong doanh nghiệp thực — không phải giáo viên chỉ biết dạy sách.</p>
+          </div>
+        </div>
+
+        <div class="benefit reveal">
+          <div class="benefit-icon">🔄</div>
+          <div class="benefit-text">
+            <h3>Cập nhật liên tục theo AI mới nhất</h3>
+            <p>AI thay đổi hàng tuần — chương trình của chúng tôi cũng vậy. Luôn cập nhật công cụ và phương pháp mới nhất.</p>
+          </div>
+        </div>
+
+        <div class="benefit reveal">
+          <div class="benefit-icon">🤝</div>
+          <div class="benefit-text">
+            <h3>Cộng đồng hỗ trợ sau sự kiện</h3>
+            <p>Nhận quyền truy cập group học viên độc quyền để tiếp tục học, hỏi đáp và kết nối với những người cùng định hướng.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Visual stack -->
+      <div class="why-visual">
+        <div class="why-card-stack">
+          <div class="stack-card stack-card-1"></div>
+          <div class="stack-card stack-card-2"></div>
+          <div class="stack-card stack-card-3">
+            <h3>Bạn sẽ nắm được</h3>
+            <div class="check-item"><span class="check-icon">✓</span> Sử dụng AI đúng cách, tránh lỗi phổ biến</div>
+            <div class="check-item"><span class="check-icon">✓</span> Công cụ AI phù hợp từng tác vụ</div>
+            <div class="check-item"><span class="check-icon">✓</span> Prompt engineering hiệu quả</div>
+            <div class="check-item"><span class="check-icon">✓</span> Tự động hóa quy trình lặp lại</div>
+            <div class="check-item"><span class="check-icon">✓</span> Phân tích dữ liệu nhanh với AI</div>
+            <div class="check-item"><span class="check-icon">✓</span> Template và checklist thực chiến</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials-section" id="testimonials">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:0.5rem;">
+      <div class="section-label" style="text-align:center">Học viên nói gì</div>
+      <h2 class="section-title" style="text-align:center">Kết quả thực tế<br />từ người thực</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <span class="quote-mark">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Tôi từng tốn hàng giờ mỗi ngày chỉ để ghi chép và follow-up thủ công sau các cuộc họp. Sau workshop, tôi dùng AI để chuyển mọi thảo luận thành danh sách việc cần làm chỉ trong vài giây.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AP</div>
+          <div>
+            <div class="author-name">Anh Phạm</div>
+            <div class="author-role">Quản Lý Dự án · TP.HCM</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <span class="quote-mark">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Tôi bận rộn đến mức quá tải nhưng không biết bắt đầu dùng AI từ đâu. BAO Academy cho tôi lộ trình thực chiến — chỉ sau 1 buổi tôi đã giải tỏa được 80% áp lực công việc lặp lại.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:var(--orange-5)">PT</div>
+          <div>
+            <div class="author-name">Phương Trần</div>
+            <div class="author-role">Trưởng Phòng · Hà Nội</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <span class="quote-mark">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Đống tài liệu deadline ngắn từng là cơn ác mộng. Kỹ năng "đọc hiểu siêu tốc" bằng AI giúp tôi tóm tắt hàng trăm trang thành ý chính chỉ trong vài phút. Game changer thực sự.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:var(--yellow-6);color:var(--dark)">VA</div>
+          <div>
+            <div class="author-name">Vân Anh</div>
+            <div class="author-role">Quản Lý Marketing · Nghệ An</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="reveal">
+    <div class="cta-box">
+      <div class="section-label" style="text-align:center;margin-bottom:1rem;">Bắt đầu ngay hôm nay</div>
+      <h2>Đừng để AI bỏ lại<br />phía sau bạn</h2>
+      <p>Chọn một sự kiện phù hợp và đăng ký ngay — <br />chỗ có giới hạn và luôn nhanh hết.</p>
+      <a href="#events" class="btn-primary" style="margin:0 auto;display:inline-flex;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 6l4-4 4 4M12 2v13"/><path d="M3 18h18"/></svg>
+        Xem tất cả sự kiện
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">BAO<span> Academy</span></a>
+      <p class="footer-tagline">Tổ chức giáo dục chuyên đào tạo ứng dụng AI, Dữ liệu và Công nghệ với định hướng thực hành, giảng dạy bởi các chuyên gia trong ngành.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Sự kiện</h4>
+      <ul>
+        <li><a href="#events">Webinar sắp tới</a></li>
+        <li><a href="#events">Workshop sắp tới</a></li>
+        <li><a href="#events">Sự kiện đã qua</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>Khóa học</h4>
+      <ul>
+        <li><a href="#">AI Nền Tảng & Thực Hành</a></li>
+        <li><a href="#">AI trong Data Analytics</a></li>
+        <li><a href="#">AI trong Market Research</a></li>
+        <li><a href="#">AI trong Nghiên cứu</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>Liên hệ</h4>
+      <ul>
+        <li><a href="mailto:info@baoacademy.ai">info@baoacademy.ai</a></li>
+        <li><a href="#">55 Quách Giai, Cát Lái, TP.HCM</a></li>
+        <li><a href="#">Tư vấn miễn phí</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 BAO Academy. All rights reserved.</span>
+    <span>Thứ Hai – Thứ 7, 9:00 – 18:00</span>
+  </div>
+</footer>
+
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <!-- Form state -->
+    <div id="modalForm">
+      <div class="modal-event-name" id="modalEventName">Đăng ký sự kiện</div>
+      <h2 id="modalTitle">Điền thông tin đăng ký</h2>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Họ và tên *</label>
+          <input type="text" placeholder="Nguyễn Văn A" id="fieldName" />
+        </div>
+        <div class="form-group">
+          <label>Số điện thoại *</label>
+          <input type="tel" placeholder="0901 234 567" id="fieldPhone" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" placeholder="email@example.com" id="fieldEmail" />
+      </div>
+
+      <div class="form-group">
+        <label>Lĩnh vực công tác</label>
+        <select id="fieldField">
+          <option value="">-- Chọn lĩnh vực --</option>
+          <option>Marketing & Truyền thông</option>
+          <option>Phân tích dữ liệu & BI</option>
+          <option>Nhân sự & Đào tạo</option>
+          <option>Quản lý dự án</option>
+          <option>Kinh doanh & Sales</option>
+          <option>Kỹ thuật & Phát triển phần mềm</option>
+          <option>Nghiên cứu & Học thuật</option>
+          <option>Khác</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Kỳ vọng sau buổi học (tuỳ chọn)</label>
+        <input type="text" placeholder="VD: Biết cách dùng AI viết báo cáo tự động..." id="fieldExpect" />
+      </div>
+
+      <button class="btn-primary" onclick="submitForm()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        Xác nhận đăng ký
+      </button>
+      <p class="modal-footer-note">🔒 Thông tin của bạn được bảo mật tuyệt đối. Chúng tôi sẽ gửi link tham gia qua email.</p>
+    </div>
+
+    <!-- Success state -->
+    <div class="modal-success" id="modalSuccess">
+      <div class="success-icon">✓</div>
+      <h2>Đăng ký thành công!</h2>
+      <p>Cảm ơn bạn đã đăng ký. Chúng tôi sẽ gửi thông tin chi tiết và link tham gia đến email của bạn trong vòng 24 giờ.<br /><br />Hẹn gặp bạn tại sự kiện! 🎉</p>
+      <button class="btn-primary" style="margin:1.5rem auto 0;display:inline-flex;" onclick="closeModal()">Đóng</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── Modal ──
+  let currentEvent = '';
+
+  function openModal(eventName) {
+    currentEvent = eventName;
+    document.getElementById('modalEventName').textContent = eventName;
+    document.getElementById('modalTitle').textContent = 'Đăng ký: ' + eventName;
+    document.getElementById('modalForm').style.display = 'block';
+    document.getElementById('modalSuccess').style.display = 'none';
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+    // Reset fields
+    ['fieldName','fieldPhone','fieldEmail','fieldExpect'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    document.getElementById('fieldField').value = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  function submitForm() {
+    const name = document.getElementById('fieldName').value.trim();
+    const email = document.getElementById('fieldEmail').value.trim();
+    const phone = document.getElementById('fieldPhone').value.trim();
+    if (!name || !email || !phone) {
+      alert('Vui lòng điền đầy đủ Họ tên, Email và Số điện thoại.');
+      return;
+    }
+    document.getElementById('modalForm').style.display = 'none';
+    document.getElementById('modalSuccess').style.display = 'block';
+  }
+
+  // ── Filter ──
+  const tabs = document.querySelectorAll('.tab');
+  const cards = document.querySelectorAll('.event-card');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+
+      cards.forEach(card => {
+        if (filter === 'all') {
+          card.classList.remove('hidden');
+        } else if (filter === 'webinar') {
+          card.classList.toggle('hidden', card.dataset.type !== 'webinar');
+        } else if (filter === 'workshop') {
+          card.classList.toggle('hidden', card.dataset.type !== 'workshop');
+        } else if (filter === 'upcoming') {
+          card.classList.toggle('hidden', card.dataset.status !== 'upcoming');
+        } else if (filter === 'past') {
+          card.classList.toggle('hidden', card.dataset.status !== 'past');
+        } else if (filter === 'free') {
+          card.classList.toggle('hidden', card.dataset.price !== 'free');
+        }
+      });
+    });
+  });
+
+  // ── Scroll Reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 0.1 + 's';
+    observer.observe(el);
+  });
+
+  // ── Smooth header ──
+  window.addEventListener('scroll', () => {
+    const h = document.querySelector('header');
+    h.style.borderBottomColor = window.scrollY > 60
+      ? 'rgba(242,135,5,0.28)'
+      : 'rgba(242,135,5,0.18)';
+  });
+</script>
+</body>
+</html>
